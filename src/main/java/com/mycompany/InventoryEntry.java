@@ -10,22 +10,19 @@ package com.mycompany;
  * @author Omar
  */
 public class InventoryEntry {
-    OrigamiKit kit;
-    int amount;
+    private OrigamiKit kit;
+    private int amount;
     
-    public InventoryEntry(OrigamiKit kit, int amount)
-    {
+    public InventoryEntry(OrigamiKit kit, int amount){
         this.kit = kit;
         this.amount = amount;
     }
     
-    public OrigamiKit getKit()
-    {
+    public OrigamiKit getKit(){
         return kit;
     }
     
-    public int getAmount()
-    {
+    public int getAmount(){
         return amount;
     }
 }

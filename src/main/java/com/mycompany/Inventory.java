@@ -6,43 +6,37 @@
 package com.mycompany;
 
 import jdk.internal.net.http.common.Pair;
-
+import java.util.ArrayList;
 /**
  *
  * @author Omar
  */
 public class Inventory {
-    InventoryEntry[] kits;
+    private ArrayList<InventoryEntry> kits;
     private int sales;
     
     //standard constructor as a new inventory object would have no stock or sales
-    public Inventory()
-    {
+    public Inventory(){
         sales = 0;
     }
     
-    public InventoryEntry[] getKits()
-    {
+    public ArrayList<InventoryEntry> getKits(){
         return kits;
     }
     
-    public int getSales()
-    {
+    public int getSales(){
         return sales;
     }
     
-    public InventoryEntry[] stock()
-    {
+    public ArrayList<InventoryEntry> stock(){
         return kits;
     }
     
-    public Pair<InventoryEntry, Double> sell(InventoryEntry kit, double money)
-    {
+    public Pair<InventoryEntry, Double> sell(InventoryEntry kit, double money){
         return new Pair<InventoryEntry, Double>(kit, money);
     }
     
-    public InventoryEntry[] getInventory()
-    {
+    public ArrayList<InventoryEntry> getInventory(){
         return kits;
     }
 }

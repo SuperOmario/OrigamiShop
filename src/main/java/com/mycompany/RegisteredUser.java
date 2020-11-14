@@ -12,8 +12,7 @@ package com.mycompany;
 public class RegisteredUser extends AnonymousUser {
     private int CustomerID;
     
-    public int getCustomerID()
-    {
+    public int getCustomerID(){
         return CustomerID;
     }
 }

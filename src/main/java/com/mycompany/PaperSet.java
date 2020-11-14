@@ -5,31 +5,27 @@ package com.mycompany;
  *
  * @author Omar
  */
-public class Paper {
+public class PaperSet {
     private int[] size = new int[2];
     private String colour;
     private String type;
     
-    public Paper(int[] size, String colour, String type)
-    {
+    public PaperSet(int[] size, String colour, String type){
         this.size = size;
         this.colour = colour;
         this.type = type;
     }
     
     //no setters as the individual paper wouldn't be changed within the Origami Kit
-    public int[] getSize()
-    {
+    public int[] getSize(){
         return size;
     }
     
-    public String getColour()
-    {
+    public String getColour(){
         return colour;
     }
     
-    public String getType()
-    {
+    public String getType(){
         return type;
     }
 }

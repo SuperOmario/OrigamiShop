@@ -12,8 +12,7 @@ package com.mycompany;
 public class AnonymousUser {
     private String name;
     
-    public boolean login() 
-    {
+    public boolean login(){
         return true;
     };
     
@@ -21,8 +20,7 @@ public class AnonymousUser {
         return username;
     };
     
-    public String getName()
-    {
+    public String getName(){
         return name;
     }
 }

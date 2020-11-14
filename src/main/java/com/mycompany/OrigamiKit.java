@@ -5,18 +5,19 @@
  */
 package com.mycompany;
 
+import java.util.ArrayList;
 /**
  *
  * @author Omar
  */
 public class OrigamiKit {
+    private int id;
     private String name, desc, type, skillLevel;
     private double price;
-    private Paper paper;
-    private String[] instructionSet;
+    private ArrayList<PaperSet> paper;
+    private ArrayList<String> instructionSet;
     
-    public OrigamiKit(String name, String desc, String type, String skillLevel, double price, Paper paper, String[] instructionSet)
-    {
+    public OrigamiKit(String name, String desc, String type, String skillLevel, double price, ArrayList<PaperSet> paper, ArrayList<String> instructionSet){
         this.name = name;
         this.desc = desc;
         this.type = type;
@@ -27,38 +28,35 @@ public class OrigamiKit {
     }
     
     //no setters as individual origami sets will not be modified, new ones will be added instead
-    public String getName()
-    {
+    public int getID(){
+        return id;
+    }
+    
+    public String getName(){
         return name;
     }
     
-    public String getDesc()
-    {
+    public String getDesc(){
         return desc;
     }
     
-    public String getType()
-    {
+    public String getType(){
         return type;
     }
     
-    public String getSkillLevel()
-    {
+    public String getSkillLevel(){
         return skillLevel;
     }
     
-    public double getPrice()
-    {
+    public double getPrice(){
         return price;
     }
     
-    public Paper getPaper()
-    {
+    public ArrayList<PaperSet> getPaper(){
         return paper;
     }
     
-    public String[] getInstructionSet()
-    {
+    public ArrayList<String> getInstructionSet(){
         return instructionSet;
     }
 }
