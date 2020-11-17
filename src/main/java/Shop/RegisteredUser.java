@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany;
+package Shop;
 
 /**
  *
  * @author Omar
  */
-public class RegisteredUser extends AnonymousUser {
+public class RegisteredUser extends Shopper {
     private int CustomerID;
     
+    //no setters as CustomerID is not something that should be changeable
     public int getCustomerID(){
         return CustomerID;
     }

@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany;
+package Shop;
 
 import jdk.internal.net.http.common.Pair;
 import java.util.ArrayList;
 /**
  *
+ * functions will be implemented in the next iteration and are subject to change
  * @author Omar
  */
 public class Cart {

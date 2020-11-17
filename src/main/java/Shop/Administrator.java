@@ -3,17 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany;
+package Shop;
 
 import java.util.ArrayList;
 
 /**
- *
+ * functions will be implemented in the next iteration and are subject to change
  * @author Omar
  */
 public class Administrator extends Shopper{
     private int employeeID;
     
+    //no setEmployeeID as this should be randomly generated and unavailable to change
     public int getEmployeeID(){
        return employeeID;
     };

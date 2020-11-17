@@ -3,26 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany;
+package Shop;
 
 import java.util.ArrayList;
 /**
  *
+ * functions will be implemented in the next iteration and are subject to change
  * @author Omar
  */
 public abstract class Shopper {
     private ArrayList<String> functionCalls;
     private Cart cart;
     
+    //no setters as functionCalls and carts are dynamic and will be added to, not set directly
     public ArrayList<String> getFunctionCalls(){
         return functionCalls;
     }
+    
+    public Cart getCart(){
+        return cart;
+    }
+    
     public OrigamiKit selectProduct(OrigamiKit selected){
         return selected;
     }
     
-    public ArrayList<InventoryEntry> addToCart(ArrayList<InventoryEntry> cart) {
-        return cart;
+    public OrigamiKit addToCart(OrigamiKit origamikit) {
+        return origamikit;
     }
     
     //This will take an InventoryEntry item and the cart of the  and call the removeItem function in Cart
