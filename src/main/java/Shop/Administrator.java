@@ -13,30 +13,19 @@ import java.util.ArrayList;
  */
 public class Administrator extends Shopper{
     private int employeeID;
-    
-    //no setEmployeeID as this should be randomly generated and unavailable to change
-    public int getEmployeeID(){
-       return employeeID;
-    };
-    
-    public OrigamiKit setProduct(String name, String desc, String type, String skillLevel, double price, ArrayList<PaperSet> paper, ArrayList<String> instructionSet){
-        OrigamiKit newOrigamiKit = new OrigamiKit(name,desc,type,skillLevel,price,paper,instructionSet);
-        return newOrigamiKit;
+
+    /**
+     * @return the employeeID
+     */
+    public int getEmployeeID() {
+        return employeeID;
     }
-    
-    public double allocateDeliveryCharges(double charge){
-        return charge;
+
+    /**
+     * @param employeeID the employeeID to set
+     */
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
     }
-    
-    public ArrayList<String> checkUserActivity(Shopper user){
-        return user.getFunctionCalls();
-    }
-    
-    public int checkTotalSales(Inventory inventory){
-        return inventory.getSales();
-    }
-    
-    public ArrayList<InventoryEntry> checkInventory(Inventory inventory){
-        return inventory.getInventory();
-    }
+
 }
