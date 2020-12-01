@@ -17,8 +17,8 @@ public class UserDAO {
     
     //populates the "database" with two users
     public void populateUsers(){
-        RegisteredUser Admin = new RegisteredUser(1, "Bill", "admin@admin.com", "a", IConstants.USER_TYPE_ADMIN);
-        RegisteredUser User = new RegisteredUser(2, "Bill", "user@user.com", "a", IConstants.USER_TYPE_USER);
+        RegisteredUser Admin = new RegisteredUser(1, "Bill", "admin@admin.com", "password", IConstants.USER_TYPE_ADMIN);
+        RegisteredUser User = new RegisteredUser(2, "Bill", "user@user.com", "password", IConstants.USER_TYPE_USER);
         
         RegisteredUser[] users = {Admin, User};
         this.users = users;
@@ -32,6 +32,5 @@ public class UserDAO {
             }
         }
         return null;
-    }
-    
+    }    
 }

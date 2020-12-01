@@ -26,7 +26,7 @@
             </div>
             <label for="password">Password</label>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" id="password" placeholder="password" required>
+                <input type="text" class="form-control" id="password" name="password" placeholder="password" required>
             </div>
             <label>
                 <input type="checkbox" checked="checked" name="remember">Remember Me
