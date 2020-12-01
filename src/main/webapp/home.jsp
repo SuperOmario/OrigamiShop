@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Shop.RegisteredUser"%>
+<%@page import="Utils.IConstants"%>
+<%@page session="true"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,12 +20,7 @@
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
-        <% if (request.getParameter("name") == null){
-            request.setAttribute("name", "Anonymous");
-            } 
-        else {
-            
-        }%>
+        
         <div class="container">
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#"><h2>Kami Rōtasu</h2></a>
@@ -31,16 +29,20 @@
             </button>
             <div>
             </div>
-            <div class="nav-item">
-                Hello, ${name}
-            </div>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <div class="navbar-text"> 
+            <% if (session.getAttribute(IConstants.SESSION_KEY_USER) == null){
+            } 
+            else {
+                out.print("Welcome, ");
+                out.print(session.getAttribute("name"));
+            }%></div> 
+            <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="#">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="jsp/login.jsp">Login</a>
+                        <a class="nav-link" href="login.jsp">Login</a>
                     </li>
                 </ul>
             </div>

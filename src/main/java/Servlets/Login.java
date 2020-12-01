@@ -5,8 +5,12 @@
  */
 package Servlets;
 
+import Manager.UserManager;
+import Shop.RegisteredUser;
+import Utils.IConstants;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,11 +31,23 @@ public class Login extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            out.print("logged in");
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            
+            UserManager uMgr = new UserManager();
+            RegisteredUser user = uMgr.loginUser(email, password);
+            if (user == null) {
+                request.getRequestDispatcher("/login.jsp").forward(request, response);
+            } else {
+                request.getSession(true).setAttribute(IConstants.SESSION_KEY_USER, user);
+                request.getSession(true).setAttribute("name", user.getName());
+                request.getRequestDispatcher("/Home").forward(request, response);
+            }
         }
     }
 

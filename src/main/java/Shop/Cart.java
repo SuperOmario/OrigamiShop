@@ -13,15 +13,50 @@ import java.util.ArrayList;
  * @author Omar
  */
 public class Cart {
+    private long ID;
     private ArrayList<InventoryEntry> items;
     private double price;
-    
-    public ArrayList<InventoryEntry> getItems(){
-        return items;
+ 
+    /**
+     * @return the ID
+     */
+    public long getID() {
+        return ID;
+    }
+
+    /**
+     * @param ID the ID to set
+     */
+    public void setID(long ID) {
+        this.ID = ID;
     }
     
-    public double getPrice(){
+    /**
+     * @return the items
+     */
+    public ArrayList<InventoryEntry> getItems() {
+        return items;
+    }
+
+    /**
+     * @param items the items to set
+     */
+    public void setItems(ArrayList<InventoryEntry> items) {
+        this.items = items;
+    }
+
+    /**
+     * @return the price
+     */
+    public double getPrice() {
         return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(double price) {
+        this.price = price;
     }
     
     public Pair<InventoryEntry, Double> addItem(InventoryEntry item, double price){

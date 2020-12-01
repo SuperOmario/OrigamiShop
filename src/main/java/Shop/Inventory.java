@@ -15,29 +15,37 @@ import java.util.ArrayList;
 public class Inventory {
     private ArrayList<InventoryEntry> kits;
     private int sales;
-    
-    //standard constructor as a new inventory object would have no stock or sales
-    public Inventory(){
-        sales = 0;
-    }
-    
-    public ArrayList<InventoryEntry> getKits(){
+
+    /**
+     * @return the kits
+     */
+    public ArrayList<InventoryEntry> getKits() {
         return kits;
     }
-    
-    public int getSales(){
+
+    /**
+     * @param kits the kits to set
+     */
+    public void setKits(ArrayList<InventoryEntry> kits) {
+        this.kits = kits;
+    }
+
+    /**
+     * @return the sales
+     */
+    public int getSales() {
         return sales;
     }
-    
-    public ArrayList<InventoryEntry> stock(){
-        return kits;
+
+    /**
+     * @param sales the sales to set
+     */
+    public void setSales(int sales) {
+        this.sales = sales;
     }
     
-    public Pair<InventoryEntry, Double> sell(InventoryEntry kit, double money){
-        return new Pair<InventoryEntry, Double>(kit, money);
-    }
-    
-    public ArrayList<InventoryEntry> getInventory(){
-        return kits;
+    public Inventory(ArrayList<InventoryEntry> kits, int sales) {
+        this.kits = kits;
+        this.sales = sales;
     }
 }
