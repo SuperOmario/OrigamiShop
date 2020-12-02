@@ -5,17 +5,15 @@
  */
 package Shop;
 
-import java.util.ArrayList;
 /**
  *
  * @author Omar
  */
 public class OrigamiKit {
     private long ID;
-    private String name, desc, type, skillLevel;
+    private String name, desc, skillLevel, imageLocation, paperType;
+    private boolean doubleSided;
     private double price;
-    private ArrayList<PaperSet> paper;
-    private ArrayList<String> instructionSet;
 
     /**
      * @return the id
@@ -60,20 +58,6 @@ public class OrigamiKit {
     }
 
     /**
-     * @return the type
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * @param type the type to set
-     */
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    /**
      * @return the skillLevel
      */
     public String getSkillLevel() {
@@ -85,6 +69,48 @@ public class OrigamiKit {
      */
     public void setSkillLevel(String skillLevel) {
         this.skillLevel = skillLevel;
+    }
+    
+    /**
+     * @return the imageLocation
+     */
+    public String getImageLocation() {
+        return imageLocation;
+    }
+
+    /**
+     * @param imageLocation the imageLocation to set
+     */
+    public void setImageLocation(String imageLocation) {
+        this.imageLocation = imageLocation;
+    }
+    
+    /**
+     * @return the paperType
+     */
+    public String getPaperType() {
+        return paperType;
+    }
+
+    /**
+     * @param paperType the paperType to set
+     */
+    public void setPaperType(String paperType) {
+        this.paperType = paperType;
+    }
+    
+    /**
+     * @return the doubleSided
+     */
+    public boolean getDoubleSided() {
+        return doubleSided;
+    }
+
+    /**
+     * @param doubleSided the doubleSided to set
+     */
+    public void setImageLocation(boolean doubleSided) {
+        this.doubleSided = doubleSided;
     }
 
     /**
@@ -100,43 +126,15 @@ public class OrigamiKit {
     public void setPrice(double price) {
         this.price = price;
     }
-
-    /**
-     * @return the paper
-     */
-    public ArrayList<PaperSet> getPaper() {
-        return paper;
-    }
-
-    /**
-     * @param paper the paper to set
-     */
-    public void setPaper(ArrayList<PaperSet> paper) {
-        this.paper = paper;
-    }
-
-    /**
-     * @return the instructionSet
-     */
-    public ArrayList<String> getInstructionSet() {
-        return instructionSet;
-    }
-
-    /**
-     * @param instructionSet the instructionSet to set
-     */
-    public void setInstructionSet(ArrayList<String> instructionSet) {
-        this.instructionSet = instructionSet;
-    }
       
-    public OrigamiKit(long ID, String name, String desc, String type, String skillLevel, double price, ArrayList<PaperSet> paper, ArrayList<String> instructionSet){
+    public OrigamiKit(long ID, String name, String desc, String skillLevel, String imageLocation, String paperType, double price, boolean doubleSided){
         this.ID = ID;
         this.name = name;
         this.desc = desc;
-        this.type = type;
         this.skillLevel = skillLevel;
+        this.imageLocation = imageLocation;
+        this.paperType = paperType;
+        this.doubleSided = doubleSided;
         this.price = price;
-        this.paper = paper;
-        this.instructionSet = instructionSet;
     }
 }

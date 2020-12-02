@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Shop.OrigamiKit"%>
 <%@page import="Shop.RegisteredUser"%>
 <%@page import="Utils.IConstants"%>
 <%@page session="true"%>
@@ -13,86 +15,41 @@
     <head>
         <title>Kami Rōtasu | Origami Shop</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- bootstrap links -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <!-- custom styles -->
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
         
+        <jsp:include page="navbar.jsp"/>
         <div class="container">
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#"><h2>Kami Rōtasu</h2></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div>
+            <div class='card-deck'>
+                <div class="row">
+        <!-- the forEach jsp tag wasn't working for me so I did it this way instead 
+        I only wanted three products per row so if the index is divisible by three it will just go onto a new row
+        -->
+        <% ArrayList<OrigamiKit> products = (ArrayList<OrigamiKit>)request.getAttribute("products"); 
+        for (OrigamiKit product : products) {
+            if (products.indexOf(product) % 3 == 0){
+                out.print("</div><br><div class='row'>");
+            }
+            out.print("<div class='card h-100'>"
+            +"<img src='images/" + product.getImageLocation() + "' class='card-img-top' alt='productplaceholder'>"
+            +"<div class='card-body'>"
+            +"<h4 class='card-title'>" + product.getName() + "</h4>"
+            +"<h5>€" + product.getPrice() + "</h5>"
+            +"<p class='card-text'>" + product.getDesc() + "</p>"
+            +"<a href='#' class='btn btn-light'>Add to cart</a>"
+            +"</div>"
+            +"</div>");
+        }
+        %>
+                </div>
             </div>
-            <div class="navbar-text"> 
-            <% if (session.getAttribute(IConstants.SESSION_KEY_USER) == null){
-            } 
-            else {
-                out.print("Welcome, ");
-                out.print(session.getAttribute("name"));
-            }%></div> 
-            <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.jsp">Login</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        </div>
-        <div class="container">
-        <!-- For now this is hard coded. I have it done out like this so I can easily extend it when products are being pulled from a DB -->
-        <!-- Pagination will be implemented as well hopefully -->
-        <% if (request.getAttribute("products") == null){
-            out.print("<div class='card-deck'>");
-            for (int i = 0; i < 4; i++){
-                out.print("<div class='card h-100'> \n"
-                + "<img src='images/origami1.jpg' class='card-img-top' alt='productplaceholder'> \n"
-                + "<div class='card-body'> \n"
-                + "<h5 class='card-title'>Origami Product</h5> \n"
-                + "<p class='card-text'>Description of origami product</p> \n"
-                + "<a href='#' class='btn btn-light'>Add to cart</a> \n"
-                + "</div> \n"
-                + "</div>");
-            }
-        out.print("</div><br>");
-        }%>
-        <% if (request.getAttribute("products") == null){
-            out.print("<div class='card-deck'>");
-            for (int i = 0; i < 4; i++){
-                out.print("<div class='card h-100'> \n"
-                + "<img src='images/origami1.jpg' class='card-img-top' alt='productplaceholder'> \n"
-                + "<div class='card-body'> \n"
-                + "<h5 class='card-title'>Origami Product</h5> \n"
-                + "<p class='card-text'>Description of origami product</p> \n"
-                + "<a href='#' class='btn btn-light'>Add to cart</a> \n"
-                + "</div> \n"
-                + "</div>");
-            }
-        out.print("</div><br>");
-        }%>
-        <% if (request.getAttribute("products") == null){
-            out.print("<div class='card-deck'>");
-            for (int i = 0; i < 4; i++){
-                out.print("<div class='card h-100'> \n"
-                + "<img src='images/origami1.jpg' class='card-img-top' alt='productplaceholder'> \n"
-                + "<div class='card-body'> \n"
-                + "<h5 class='card-title'>Origami Product</h5> \n"
-                + "<p class='card-text'>Description of origami product</p> \n"
-                + "<a href='#' class='btn btn-light'>Add to cart</a> \n"
-                + "</div> \n"
-                + "</div>");
-            }
-        out.print("</div><br>");
-        }%>
         </div>
     </body>
 </html>

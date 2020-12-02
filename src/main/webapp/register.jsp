@@ -1,6 +1,6 @@
 <%-- 
-    Document   : login
-    Created on : 24 Nov 2020, 13:52:53
+    Document   : register
+    Created on : 1 Dec 2020, 18:31:18
     Author     : Omar
 --%>
 
@@ -35,21 +35,26 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
         </nav>
-        <h1>Login</h1>
-        <form name="loginform" action="Login" method="post" onsubmit="return isValid(document.loginform.email)">
+        <h1>Register</h1>
+        <form name="registerform" action="#" method="post" onsubmit="return isValid(document.registerform.email)">
+            <label for="name">Name</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+            </div>
             <label for="email">Email</label>
             <div class="input-group mb-3">
                 <input type="text" class="form-control" id="email" name="email" placeholder="Email" required>  
             </div>
             <label for="password">Password</label>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" id="password" name="password" placeholder="password" required>
+                <input type="text" class="form-control" id="password" name="password" placeholder="Password" required>
             </div>
-            <label>
-                <input type="checkbox" name="remember">Remember Me
-            </label>
+            <label for="password">Password</label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="conirmpassword" name="confirmpassword" placeholder="Confirm Password" required>
+            </div>
             <br>
-            <button type="submit" name="submit" value="Submit" class="btn btn-success btn-lg">Log in</button> 
+            <button type="submit" name="submit" value="Submit" class="btn btn-success btn-lg">Register</button> 
         </form>
-    </body>  
+    </body>
 </html>
