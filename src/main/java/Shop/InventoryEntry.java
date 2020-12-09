@@ -5,29 +5,17 @@
  */
 package Shop;
 
+import Utils.PriceRounder;
+
 /**
  *
  * @author Omar
  */
 public class InventoryEntry {
-    private long ID;
     private OrigamiKit kit;
     private int amount;
+    private double price;
     
-    /**
-     * @return the ID
-     */
-    public long getID() {
-        return ID;
-    }
-
-    /**
-     * @param ID the ID to set
-     */
-    public void setID(long ID) {
-        this.ID = ID;
-    }
-
     /**
      * @return the kit
      */
@@ -56,9 +44,27 @@ public class InventoryEntry {
         this.amount = amount;
     }
     
-    public InventoryEntry(long ID, OrigamiKit kit, int amount){
-        this.ID = ID;
+    /**
+     * @return the amount
+     */
+    public double getPrice() {
+        return price;
+    }
+
+    /**
+     * @param amount the amount to set
+     */
+    public void setPrice(double price) {
+        PriceRounder pr = new PriceRounder();
+        price = pr.round(price, 2);
+        this.price = price;
+    }
+    
+    public InventoryEntry(OrigamiKit kit, int amount, double price){
         this.kit = kit;
         this.amount = amount;
+        PriceRounder pr = new PriceRounder();
+        price = pr.round(price, 2);
+        this.price = price;
     }
 }

@@ -5,6 +5,8 @@
  */
 package Shop;
 
+import Utils.PriceRounder;
+
 /**
  *
  * @author Omar
@@ -124,6 +126,8 @@ public class OrigamiKit {
      * @param price the price to set
      */
     public void setPrice(double price) {
+        PriceRounder pr = new PriceRounder();
+        price = pr.round(price, 2);
         this.price = price;
     }
       

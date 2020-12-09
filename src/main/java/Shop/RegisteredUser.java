@@ -11,7 +11,7 @@ package Shop;
  */
 public class RegisteredUser extends AnonymousUser {
     private String email;
-    //passwords will be hashed and stored as a hashed string
+    //passwords will be hashed and stored as a hashed string in the next part of the project
     private String password;
     private String address;
     private String userType;

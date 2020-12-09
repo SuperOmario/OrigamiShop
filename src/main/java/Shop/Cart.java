@@ -5,7 +5,7 @@
  */
 package Shop;
 
-import jdk.internal.net.http.common.Pair;
+import Utils.PriceRounder;
 import java.util.ArrayList;
 /**
  *
@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class Cart {
     private long ID;
     private ArrayList<InventoryEntry> items;
+    private int itemsAmount;
     private double price;
  
     /**
@@ -44,6 +45,20 @@ public class Cart {
     public void setItems(ArrayList<InventoryEntry> items) {
         this.items = items;
     }
+    
+     /**
+     * @return the itemsAmount
+     */
+    public long getItemsAmount() {
+        return itemsAmount;
+    }
+
+    /**
+     * @param itemsAmount the itemsAmount to set
+     */
+    public void setItemsAmount(int itemsAmount) {
+        this.itemsAmount = itemsAmount;
+    }
 
     /**
      * @return the price
@@ -56,15 +71,15 @@ public class Cart {
      * @param price the price to set
      */
     public void setPrice(double price) {
+        PriceRounder pr = new PriceRounder();
+        price = pr.round(price, 2);
         this.price = price;
     }
     
-    public Pair<InventoryEntry, Double> addItem(InventoryEntry item, double price){
-        return new Pair<InventoryEntry, Double>(item, price);
-    }
-    
-    //This will take in an InventoryEntry item and remvoe it from the cart, returning the cart
-    public Cart removeItem(Cart cart){
-        return cart;
+    public Cart(long ID, ArrayList<InventoryEntry> items, int itemsAmount, double price) {
+        this.ID = ID;
+        this.items = items;
+        this.itemsAmount = itemsAmount;
+        this.price = price;
     }
 }

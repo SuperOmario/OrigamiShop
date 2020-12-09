@@ -5,11 +5,10 @@
  */
 package Servlets;
 
-import Data.ProductDAO;
+import Manager.ProductManager;
 import Shop.OrigamiKit;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Omar
  */
-public class Home extends HttpServlet {
+public class ProductServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,11 +33,11 @@ public class Home extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            ProductDAO PDAO = new ProductDAO();
-            ArrayList<OrigamiKit> topProducts = PDAO.getTopProducts(6);
-            
-            request.setAttribute("products", topProducts);   
-            request.getRequestDispatcher("/home.jsp").forward(request,response);
+            String ID = request.getParameter("product");
+            ProductManager PM = new ProductManager();
+            OrigamiKit product = PM.getProductByID(ID);
+            request.setAttribute("product", product);
+            request.getRequestDispatcher("/product.jsp").forward(request, response);
         }
     }
 

@@ -5,8 +5,9 @@
  */
 package Servlets;
 
-import Data.ProductDAO;
-import Shop.OrigamiKit;
+import Manager.ProductManager;
+import Shop.InventoryEntry;
+import Shop.Cart;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Omar
  */
-public class Home extends HttpServlet {
+public class AddToCartFromHome extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,12 +34,20 @@ public class Home extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            ProductDAO PDAO = new ProductDAO();
-            ArrayList<OrigamiKit> topProducts = PDAO.getTopProducts(6);
+        try (PrintWriter out = response.getWriter()) {
+            String productID = request.getParameter("product");
+            ProductManager PM = new ProductManager();
             
-            request.setAttribute("products", topProducts);   
-            request.getRequestDispatcher("/home.jsp").forward(request,response);
+            if (request.getSession(true).getAttribute("cart") == null) {
+                Cart cart = new Cart(1, new ArrayList<InventoryEntry>(), 0, 0);
+                request.getSession(true).setAttribute("cart", cart);
+            }
+            
+            Cart cart = (Cart)request.getSession(true).getAttribute("cart");
+            
+            cart = PM.addToCartFromHome(cart, productID);
+            request.getSession(true).setAttribute("cart", cart);
+            request.getRequestDispatcher("/Home").forward(request,response);
         }
     }
 

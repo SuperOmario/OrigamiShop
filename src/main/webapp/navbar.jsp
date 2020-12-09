@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Shop.RegisteredUser"%>
+<%@page import="Shop.Cart"%>
 <%@page import="Utils.IConstants"%>
 <%@page session="true"%>
 <!DOCTYPE html>
@@ -25,13 +26,13 @@
         </head>
     <body>
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#"><h2>Kami Rōtasu</h2></a>
+            <a class="navbar-brand" href="Home"><h2>Kami Rōtasu</h2></a>
             <div class="navbar-text">
             <% if (session.getAttribute(IConstants.SESSION_KEY_USER) == null){
             } 
             else {
                 RegisteredUser user = (RegisteredUser)session.getAttribute(IConstants.SESSION_KEY_USER);
-                out.print("Welcome, " + user.getName());
+                out.print("Hello, " + user.getName());
             }%>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,8 +49,15 @@
                     + "<a class='nav-link' href='Logout'>Logout</a>"
                     + "</li>"
                     + "<li class='nav-item'>"
-                    + "<button type='button' class='btn btn-primary'><i class='fas fa-shopping-cart'></i>Basket</button>"
-                    + "</ul>");
+                    + "<a href='checkout.jsp' type='button' class='btn btn-primary'>");
+                    if (session.getAttribute("cart") != null) {
+                        Cart cart = (Cart)session.getAttribute("cart");
+                        out.print(cart.getItemsAmount());
+                    } else {
+                        out.print(0);
+                    }
+                    out.print("<i class='fas fa-shopping-cart'></i>Cart</a>"
+                    +"</ul>");
                 } else if (user.getUserType() == IConstants.USER_TYPE_USER){
                     out.print(
                     "<ul class='navbar-nav ml-auto mt-2 mt-lg-0'>"
@@ -57,11 +65,17 @@
                     + "<a class='nav-link' href='Logout'>Logout</a>"
                     + "</li>"
                     + "<li class='nav-item'>"
-                    + "<button type='button' class='btn btn-primary'><i class='fas fa-shopping-cart'></i>Basket</button>"
-                    + "</ul>");
+                    + "<a href='checkout.jsp' type='button' class='btn btn-primary'>");
+                    if (session.getAttribute("cart") != null) {
+                        Cart cart = (Cart)session.getAttribute("cart");
+                        out.print(cart.getItemsAmount());
+                    } else {
+                        out.print(0);
+                    }
+                    out.print("<i class='fas fa-shopping-cart'></i>Cart</a>"
+                    +"</ul>");
                 }
-            }
-            else {
+            } else {
                 out.print(
                 "<ul class='navbar-nav ml-auto'>"
                 +"<li class='nav-item'>"
@@ -71,8 +85,14 @@
                 +"<a class='nav-link' href='login.jsp'>Login</a>"
                 +"</li>"
                 +"<li class='nav-item'>"
-                +"<button type='button' class='btn btn-primary'>"
-                +"<i class='fas fa-shopping-cart'></i>Basket</button>"
+                +"<a href='checkout.jsp' type='button' class='btn btn-primary'>");
+                if (session.getAttribute("cart") != null) {
+                    Cart cart = (Cart)session.getAttribute("cart");
+                    out.print(cart.getItemsAmount());
+                } else {
+                    out.print(0);
+                }
+                out.print("<i class='fas fa-shopping-cart'></i>Cart</a>"
                 +"</ul>");
             } 
             %>
