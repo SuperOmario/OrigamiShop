@@ -4,9 +4,11 @@
     Author     : Omar
 --%>
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Shop.RegisteredUser"%>
 <%@page import="Shop.Cart"%>
+<%@page import="Data.UserDAO"%>
 <%@page import="Utils.IConstants"%>
 <%@page session="true"%>
 <!DOCTYPE html>
@@ -23,7 +25,7 @@
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <!-- custom styles -->
         <link rel="stylesheet" href="css/styles.css">
-        </head>
+    </head>
     <body>
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="Home"><h2>Kami Rōtasu</h2></a>
@@ -58,7 +60,7 @@
                     }
                     out.print("<i class='fas fa-shopping-cart'></i>Cart</a>"
                     +"</ul>");
-                } else if (user.getUserType() == IConstants.USER_TYPE_USER){
+                } else if (user.getUserType() == IConstants.USER_TYPE_GENUSER){
                     out.print(
                     "<ul class='navbar-nav ml-auto mt-2 mt-lg-0'>"
                     + "<li class='nav-item'>"

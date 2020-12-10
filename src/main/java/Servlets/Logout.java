@@ -5,9 +5,12 @@
  */
 package Servlets;
 
+import Utils.IConstants;
+import Utils.Message;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,11 +30,20 @@ public class Logout extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    /**
+     * Clears cookies and session upon logging out 
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
+            Cookie ck = new Cookie(IConstants.SESSION_KEY_USER,"");  
+            ck.setMaxAge(0);
+            response.addCookie(ck);
             request.getSession(true).invalidate();
+            Message message = new Message("Successfully logged out", IConstants.MESSAGE_TYPE_SUCCESS);
+            request.getSession(true).setAttribute("message", message);
             request.getRequestDispatcher("/Home").forward(request, response);
         }
     }

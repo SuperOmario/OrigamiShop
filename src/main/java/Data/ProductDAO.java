@@ -36,4 +36,17 @@ public class ProductDAO {
         prods.add(p6);
         return prods;
     }
+    
+    public OrigamiKit getProductByID(String ID) {
+        ProductDAO PDAO = new ProductDAO();
+        ArrayList<OrigamiKit> topProducts = PDAO.getTopProducts(6);
+        
+        for (OrigamiKit product : topProducts) {
+            String PID = String.valueOf(product.getID());
+            if (ID.equals(PID)) {
+                return product;
+            }
+        }
+        return null;
+    }
 }

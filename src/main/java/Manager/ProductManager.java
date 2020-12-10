@@ -17,21 +17,9 @@ import java.util.ArrayList;
  */
 public class ProductManager {
     /*
-    Helper functions to find products, check if an item is already in a cart, update quantity of products already in the cart,
+    Helper functions to check if an item is already in a cart, update quantity of products already in the cart,
     count items in the cart and calculate the price of everything in the cart
     */
-    public OrigamiKit getProductByID(String ID) {
-        ProductDAO PDAO = new ProductDAO();
-        ArrayList<OrigamiKit> topProducts = PDAO.getTopProducts(6);
-        
-        for (OrigamiKit product : topProducts) {
-            String PID = String.valueOf(product.getID());
-            if (ID.equals(PID)) {
-                return product;
-            }
-        }
-        return null;
-    }
     
     public boolean isInCart(Cart cart, String ID){
         ArrayList<InventoryEntry> items = cart.getItems();
@@ -89,7 +77,8 @@ public class ProductManager {
             cart = updateItems(cart, ID, 1);
         }
         else {
-            OrigamiKit product = getProductByID(ID);
+            ProductDAO PDAO = new ProductDAO();
+            OrigamiKit product = PDAO.getProductByID(ID);
             InventoryEntry item = new InventoryEntry(product, 1, product.getPrice());
             ArrayList<InventoryEntry> items = cart.getItems();
             items.add(item);
@@ -105,7 +94,8 @@ public class ProductManager {
             cart = updateItems(cart, ID, quantity);
         }
         else {
-            OrigamiKit product = getProductByID(ID); 
+            ProductDAO PDAO = new ProductDAO();
+            OrigamiKit product = PDAO.getProductByID(ID); 
             InventoryEntry item = new InventoryEntry(product, quantity, (product.getPrice()*quantity));
             ArrayList<InventoryEntry> items = cart.getItems();
             items.add(item);

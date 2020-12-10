@@ -30,7 +30,7 @@
     <body>
         
         <jsp:include page="navbar.jsp"/>
-        <div class="container">
+        <div class="container mainbody">
             <div class='card-deck'>
                 <div class="row">
         <!-- the forEach jsp tag wasn't working for me so I did it this way instead 
@@ -54,9 +54,9 @@
             + product.getName() + "</h4></a>"
             + "<ul class='list-unstyled mt-3 mb-4'>"
             + "<li><a class='text-dark' href='#' onclick='submitProductForm(" + id + ")'><h5>€" + product.getPrice() + "</h5></a></li>"
-            + "<li><p class='card-text'>" + product.getDesc() + "</p></li></form>"
+            + "<li><p class='card-text mb-5'>" + product.getDesc() + "</p></li></form>"
             + "<form action='AddToCart'><button type='submit' name='product' value='" + id
-            + "' class='mt-auto btn btn-dark'>Add to cart</button></form>"
+            + "' class='mt-auto btn btn-dark btn-lg mb-4 mt-2' style='position: absolute; bottom: 0;'>Add to cart</button></form>"
             + "</div>"
             + "</div>");
         }
@@ -64,5 +64,6 @@
                 </div>
             </div>
         </div>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

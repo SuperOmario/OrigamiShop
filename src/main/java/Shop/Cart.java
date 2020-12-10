@@ -80,6 +80,8 @@ public class Cart {
         this.ID = ID;
         this.items = items;
         this.itemsAmount = itemsAmount;
+        PriceRounder pr = new PriceRounder();
+        price = pr.round(price, 2);
         this.price = price;
     }
 }

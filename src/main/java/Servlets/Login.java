@@ -7,11 +7,16 @@ package Servlets;
 
 import Manager.UserManager;
 import Shop.RegisteredUser;
+import Utils.EmailValidator;
 import Utils.IConstants;
+import Utils.Message;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,15 +43,30 @@ public class Login extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
+            boolean remember = "true".equals(request.getParameter("remember"));
             
-            UserManager uMgr = new UserManager();
-            RegisteredUser user = uMgr.loginUser(email, password);
-            if (user == null) {
+            String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+            Pattern mailFormat = Pattern.compile(regex);
+            Matcher matcher = mailFormat.matcher(email);
+            if (matcher.matches()){
+                UserManager uMgr = new UserManager();
+                RegisteredUser user = uMgr.loginUser(email, password);
+            
+                if (user == null) {
+                    request.getRequestDispatcher("/login.jsp").forward(request, response);
+                } 
+                else {
+                    if (remember) {
+                        Cookie ck = new Cookie((IConstants.SESSION_KEY_USER + "cookie"), user.getEmail());
+                        response.addCookie(ck);
+                    }
+                    request.getSession(true).setAttribute(IConstants.SESSION_KEY_USER, user);
+                    request.getRequestDispatcher("/Home").forward(request, response);
+                }
+            } 
+            else {
                 request.getRequestDispatcher("/login.jsp").forward(request, response);
-            } else {
-                request.getSession(true).setAttribute(IConstants.SESSION_KEY_USER, user);
-                request.getRequestDispatcher("/Home").forward(request, response);
-            }
+            }    
         }
     }
 

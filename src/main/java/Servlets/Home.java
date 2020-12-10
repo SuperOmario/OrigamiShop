@@ -6,11 +6,15 @@
 package Servlets;
 
 import Data.ProductDAO;
+import Data.UserDAO;
 import Shop.OrigamiKit;
+import Shop.RegisteredUser;
+import Utils.IConstants;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,6 +38,15 @@ public class Home extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
+            Cookie[] ck = request.getCookies();
+            
+            for (Cookie cookie : ck) {
+                if (cookie.getName() == (IConstants.SESSION_KEY_USER + "cookie")){
+                    UserDAO UDAO = new UserDAO();
+                    RegisteredUser user = UDAO.getUserByEmail(cookie.getValue());
+                    request.getSession(true).setAttribute(IConstants.SESSION_KEY_USER, user);
+                }
+            }
             ProductDAO PDAO = new ProductDAO();
             ArrayList<OrigamiKit> topProducts = PDAO.getTopProducts(6);
             

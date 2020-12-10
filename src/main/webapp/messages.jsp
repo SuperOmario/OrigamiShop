@@ -1,10 +1,10 @@
 <%-- 
-    Document   : footer
-    Created on : 26 Nov 2020, 12:35:32
+    Document   : messages
+    Created on : 10 Dec 2020, 10:27:57
     Author     : Omar
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Utils.Message"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,12 +15,14 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <!-- font awesome -->
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <!-- custom styles -->
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
-        <footer class="footer footer-dark">
-            <div class="navbar-brand"><h4>© Kami Rōtasu | ACME Trading Company - 2020</h4></div>
-        </footer>
+        <% Message message = (Message)session.getAttribute("message");
+            out.print("<div>");
+        %>
     </body>
 </html>

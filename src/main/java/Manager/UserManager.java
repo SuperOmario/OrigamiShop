@@ -2,6 +2,7 @@ package Manager;
 
 import Data.UserDAO;
 import Shop.RegisteredUser;
+import Utils.IConstants;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,11 +21,11 @@ public class UserManager {
         UserDAO userDAO = new UserDAO();
         userDAO.populateUsers();
         RegisteredUser user = userDAO.getUserByEmail(email);
-        if (user.getPassword().equals(password)){
+        if (user != null && user.getPassword().equals(password)){
             return user;
         } else {
             return null;
         }
     }
-    
+
 }

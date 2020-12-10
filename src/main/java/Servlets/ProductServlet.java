@@ -5,7 +5,7 @@
  */
 package Servlets;
 
-import Manager.ProductManager;
+import Data.ProductDAO;
 import Shop.OrigamiKit;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,8 +34,8 @@ public class ProductServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             String ID = request.getParameter("product");
-            ProductManager PM = new ProductManager();
-            OrigamiKit product = PM.getProductByID(ID);
+            ProductDAO PDAO = new ProductDAO();
+            OrigamiKit product = PDAO.getProductByID(ID);
             request.setAttribute("product", product);
             request.getRequestDispatcher("/product.jsp").forward(request, response);
         }

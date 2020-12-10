@@ -6,8 +6,12 @@
 package Servlets;
 
 import Manager.ProductManager;
+import Manager.UserManager;
 import Shop.InventoryEntry;
 import Shop.Cart;
+import Shop.RegisteredUser;
+import Utils.IConstants;
+import Utils.Message;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -35,6 +39,13 @@ public class AddToCartFromHome extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            if (request.getSession(true).getAttribute(IConstants.SESSION_KEY_USER) == null){
+                Message message = new Message("Please log in before adding to the cart", IConstants.MESSAGE_TYPE_ERROR);
+                request.getSession(true).setAttribute("message", message);
+                request.getRequestDispatcher("/Home").forward(request,response);
+                return;
+            }
+            
             String productID = request.getParameter("product");
             ProductManager PM = new ProductManager();
             

@@ -139,6 +139,8 @@ public class OrigamiKit {
         this.imageLocation = imageLocation;
         this.paperType = paperType;
         this.doubleSided = doubleSided;
+        PriceRounder pr = new PriceRounder();
+        price = pr.round(price, 2);
         this.price = price;
     }
 }
