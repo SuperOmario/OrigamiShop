@@ -24,6 +24,7 @@
         <div class="container mainbody"> 
             <div class="row">
                 <div class="col">
+            <!-- displays all of the info about a product -->
             <% OrigamiKit product = (OrigamiKit)request.getAttribute("product"); 
             String doubleSided = "X";
             if (product.getDoubleSided() == true) {

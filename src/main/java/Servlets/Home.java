@@ -49,7 +49,7 @@ public class Home extends HttpServlet {
             }
             ProductDAO PDAO = new ProductDAO();
             ArrayList<OrigamiKit> topProducts = PDAO.getTopProducts(6);
-            
+
             request.setAttribute("products", topProducts);   
             request.getRequestDispatcher("/home.jsp").forward(request,response);
         }

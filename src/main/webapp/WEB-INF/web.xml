@@ -27,6 +27,14 @@
         <servlet-name>AddToCartFromProduct</servlet-name>
         <servlet-class>Servlets.AddToCartFromProduct</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NoFunctionality</servlet-name>
+        <servlet-class>Servlets.NoFunctionality</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveFromCart</servlet-name>
+        <servlet-class>Servlets.RemoveFromCart</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
         <url-pattern>/Home</url-pattern>
@@ -50,6 +58,14 @@
     <servlet-mapping>
         <servlet-name>AddToCartFromProduct</servlet-name>
         <url-pattern>/AddToCartFromProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NoFunctionality</servlet-name>
+        <url-pattern>/NoFunctionality</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveFromCart</servlet-name>
+        <url-pattern>/RemoveFromCart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class ProductDAO {
     
     public ArrayList<OrigamiKit> getTopProducts(int numProducts) {
-        //hard code some producst in absence of the database
+        //hard code some products in absence of the database
         ArrayList<OrigamiKit> prods = new ArrayList();
         OrigamiKit p1 = new OrigamiKit(1, "GameNote Kids Origami", "54 PCS Patterns, 55 Page Craft Guiding Book", "Beginner", "gamenote.jpg", "foil-back", 21.99, true);
         prods.add(p1);
@@ -37,6 +37,7 @@ public class ProductDAO {
         return prods;
     }
     
+    //find a product by its ID
     public OrigamiKit getProductByID(String ID) {
         ProductDAO PDAO = new ProductDAO();
         ArrayList<OrigamiKit> topProducts = PDAO.getTopProducts(6);

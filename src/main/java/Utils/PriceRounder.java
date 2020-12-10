@@ -9,7 +9,7 @@ import java.math.RoundingMode;
  */
 
 /*
-code found at https://www.baeldung.com/java-round-decimal-number
+code found at https://www.baeldung.com/java-round-decimal-number just rounds prices to make sure they don't go beyond two decimal places
 */
 public class PriceRounder {
     public static double round(double price, int places){

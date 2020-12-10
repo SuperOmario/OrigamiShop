@@ -1,3 +1,10 @@
+/*
+this is almost identical css to the styles.css sheet except the footer's position is absolute
+this is because on the pages that don't span the whole length of the page the footer was awkwardly placed and looked bad
+when using absolute positioning on the pages that were longer than the length of the screen it would stay
+in the middle of the screen and block content, it was ugly :/
+*/
+
 .mainbody{
     margin-top: 10%;
     margin-bottom: 2%;

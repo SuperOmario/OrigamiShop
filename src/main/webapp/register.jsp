@@ -23,6 +23,7 @@
         <script src="js/emailValidator.js"></script>
     </head>
     <body>
+        <!-- doesn't do anything yet -->
         <% if (session.getAttribute(IConstants.SESSION_KEY_USER) != null){
             request.getRequestDispatcher("/Home").forward(request, response);
         }     
@@ -42,7 +43,7 @@
         </nav>
         <div class="container mainbody">
             <h1>Register</h1>
-            <form name="registerform" action="#" method="post" onsubmit="return isValid(document.registerform.email)">
+            <form name="registerform" action="NoFunctionality" method="post" onsubmit="return isValid(document.registerform.email)">
                 <label for="name">Name</label>
                 <div class="input-group">
                     <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>

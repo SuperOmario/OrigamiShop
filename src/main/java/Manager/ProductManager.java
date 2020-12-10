@@ -41,6 +41,7 @@ public class ProductManager {
             if (ID.equals(PID)){
                 quantity += item.getAmount();
                 item.setAmount(quantity);
+                item.setPrice(quantity*product.getPrice());
                 items.set(index, item);
                 cart.setItems(items);
                 return cart;
@@ -105,4 +106,25 @@ public class ProductManager {
         cart = calcPrice(cart);
         return cart;
     }
+    
+    /*
+    uses some of the helper functions to remove items from the cart
+    */
+    public Cart removeFromCart(Cart cart, String ID){
+        ArrayList<InventoryEntry> items = cart.getItems();
+        for (InventoryEntry item : items) {
+            OrigamiKit product = item.getKit();
+            String PID = String.valueOf(product.getID());
+            int index = items.indexOf(item);
+            if (ID.equals(PID)){
+                items.remove(index);
+                cart.setItems(items);
+                cart = itemCount(cart);
+                cart = calcPrice(cart);
+                return cart;
+            }
+        }
+        return cart;
+    }
+    
 }

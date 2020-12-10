@@ -21,8 +21,15 @@
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
-        <% Message message = (Message)session.getAttribute("message");
-            out.print("<div>");
+        <!-- displays helpful messages to the user when certain actions are taken -->
+        <%
+            Message message = (Message)session.getAttribute("message");
+            out.print("<div class='alert alert-" + message.getMessageType() + "'>" 
+                    + message.getMessageText() 
+                    + "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>"
+                    + "<span aria-hidden='true'>&times;</span>"
+                    + "</button>"
+                    + "</div>");
         %>
     </body>
 </html>

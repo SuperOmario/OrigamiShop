@@ -41,12 +41,21 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class='collapse navbar-collapse' id='navbarSupportedContent'>
-            <%  
+            <% 
+            /*
+            displays a different set of options for every type of user
+            */
             if (session.getAttribute(IConstants.SESSION_KEY_USER) != null) {
                 RegisteredUser user = (RegisteredUser)session.getAttribute(IConstants.SESSION_KEY_USER);
                 if (user.getUserType() == IConstants.USER_TYPE_ADMIN){
                     out.print(
                     "<ul class='navbar-nav ml-auto mt-2 mt-lg-0'>"
+                    + "<li class='nav-item'>"
+                    + "<a class='nav-link' href='NoFunctionality'>Product Settings</a>"
+                    + "</li>"
+                    + "<li class='nav-item'>"
+                    + "<a class='nav-link' href='NoFunctionality'>Reports</a>"
+                    + "</li>"
                     + "<li class='nav-item'>"
                     + "<a class='nav-link' href='Logout'>Logout</a>"
                     + "</li>"

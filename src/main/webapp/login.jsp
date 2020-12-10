@@ -39,8 +39,15 @@
             </div>
         </nav>
         <div class='container mainbody'>
+            <%if (session.getAttribute("message") != null && session.getAttribute("message") != ""){%>
+            <jsp:include page="messages.jsp"/>
+            <%}%>
+            <!-- once the messages are rendered they are cleared so that they don't appear on other pages -->
+            <%
+                session.setAttribute("message", "");
+            %>
             <h1>Login</h1>
-            <form name="loginform" action="Login" method="post" onsubmit="return isValid(document.loginform.email)">
+            <form name="loginform" action="Login" method="post">
                 <label for="email">Email</label>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" id="email" name="email" placeholder="Email" required>  

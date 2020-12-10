@@ -16,6 +16,9 @@ import Utils.IConstants;
  */
 public class UserManager {
     
+    /*
+    verifies username and password in order to log in
+    */
     public RegisteredUser loginUser(String email, String password){
         
         UserDAO userDAO = new UserDAO();

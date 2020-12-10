@@ -28,22 +28,42 @@
                 <div class='col'><h3>Product</h3></div>
                 <div class='col'><h3>Quantity</h3></div>
                 <div class='col'><h3>Price</h3></div>
+                <div class='col'></div>
             </div>
+            <!-- displays the list of items in the cart -->
             <% 
             if (session.getAttribute("cart") != null) {
                 Cart cart = (Cart)session.getAttribute("cart");
                     for (InventoryEntry item : cart.getItems()) {
                         out.print("<div class='row'>");
                         OrigamiKit product = item.getKit();
-                        out.print("<div class='col'>" + product.getName() + "</div><div class='col'>" + item.getAmount() + "</div><div class='col'>" + item.getPrice()
-                        + "</div></div>");
+                        out.print("<div class='col'>" + product.getName() + "</div>"
+                        + "<div class='col'>" + item.getAmount() + "</div>"
+                        + "<div class='col'>€" + item.getPrice() + "</div>"
+                        + "<form action='RemoveFromCart' method='post'>"
+                        + "<input type='hidden' name='itemForRemoval' value='" + product.getID() + "'>"
+                        + "<div class='col'><button type='submit' class='btn btn-dark btn-sm'>Remove</button></div>"
+                        + "</form>"
+                        + "</div><br>");
                     }
-                    out.print("<br><hr><div class='row'><div class='col'><h3>Total: </h3></div><div class='col'></div>"
-                    + "<div class='col'><h3>" + cart.getPrice() + "</h3></div></div>"
-                    + "<div class='row'><div class='col'></div><div class='col'></div><div class='col'><a href='#' class='btn btn-dark btn-lg'>Checkout</a></div></div>");
+                    out.print("<br><hr>"
+                    + "<div class='row'>"
+                    + "<div class='col'><h3>Total: </h3></div>"
+                    + "<div class='col'></div>"
+                    + "<div class='col'><h3>€" + cart.getPrice() + "</h3></div>"
+                    + "<div class='col'></div>"
+                    + "</div>"
+                    + "<div class='row'>"
+                    + "<div class='col'></div>"
+                    + "<div class='col'></div>"
+                    + "<div class='col'>"
+                    + "<a href='NoFunctionality' class='btn btn-dark btn-lg'>Checkout</a>"
+                    + "</div>"
+                    + "<div class='col'></div>"
+                    + "</div>");
             } 
             else {
-                out.print("Your cart is empty");
+                out.print("Add something to your cart!");
             }
             %>
         </div>

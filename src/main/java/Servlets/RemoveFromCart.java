@@ -5,16 +5,11 @@
  */
 package Servlets;
 
-import Manager.UserManager;
-import Shop.RegisteredUser;
-import Utils.IConstants;
-import Utils.Message;
+import Manager.ProductManager;
+import Shop.Cart;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Omar
  */
-public class Login extends HttpServlet {
+public class RemoveFromCart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,42 +29,16 @@ public class Login extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            boolean remember = "true".equals(request.getParameter("remember"));
-            
-            //Adapted from https://howtodoinjava.com/java/regex/java-regex-validate-email-address/ 
-            String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
-            Pattern mailFormat = Pattern.compile(regex);
-            Matcher matcher = mailFormat.matcher(email);
-            if (matcher.matches()){
-                UserManager uMgr = new UserManager();
-                RegisteredUser user = uMgr.loginUser(email, password);
-            
-                if (user == null) {
-                    Message message = new Message("Incorrect email or password", IConstants.MESSAGE_TYPE_ERROR);
-                    request.getSession(true).setAttribute("message", message);
-                    request.getRequestDispatcher("/login.jsp").forward(request, response);
-                } 
-                else {
-                    if (remember) {
-                        Cookie ck = new Cookie((IConstants.SESSION_KEY_USER + "cookie"), user.getEmail());
-                        response.addCookie(ck);
-                    }
-                    request.getSession(true).setAttribute(IConstants.SESSION_KEY_USER, user);
-                    request.getRequestDispatcher("/Home").forward(request, response);
-                }
-            } 
-            else {
-                Message message = new Message("Invalid email format", IConstants.MESSAGE_TYPE_ERROR);
-                request.getSession(true).setAttribute("message", message);
-                request.getRequestDispatcher("/login.jsp").forward(request, response);
-            }    
+            String ID = request.getParameter("itemForRemoval");
+            ProductManager PM = new ProductManager();
+            Cart cart = (Cart)request.getSession(true).getAttribute("cart");
+            cart = PM.removeFromCart(cart, ID);
+            request.getSession(true).setAttribute("cart", cart);
+            request.getRequestDispatcher("/checkout.jsp").forward(request,response);
         }
     }
 
